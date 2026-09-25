@@ -2,187 +2,188 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Shammah Mission Portal</title>
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHAMMAH MISSION SCHOOL PORTAL</title>
 <style>
-*{box-sizing:border-box}
-
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#eef7f0;
-color:#17301f;
-}
-
-header{
-background:linear-gradient(135deg,#075c27,#0b8a3d);
-color:white;
-text-align:center;
-padding:35px 15px;
-}
-
-.logo{
-width:90px;
-height:90px;
-border-radius:50%;
-background:white;
-color:#087830;
-border:4px solid #e0b93f;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:auto;
-font-size:25px;
-font-weight:bold;
-}
-
-h1{
-margin:15px 0 5px;
-font-size:28px;
-}
-
-.motto{
-color:#ffe27a;
-font-weight:bold;
-}
-
-.container{
-max-width:950px;
-margin:30px auto;
-padding:15px;
-}
-
-.welcome{
-background:white;
-padding:25px;
-border-radius:18px;
-text-align:center;
-box-shadow:0 5px 20px #0002;
-}
-
-.portals{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:22px;
-margin-top:25px;
-}
-
-.card{
-background:white;
-padding:30px 20px;
-border-radius:18px;
-text-align:center;
-box-shadow:0 5px 20px #0002;
-}
-
-.icon{
-font-size:50px;
-}
-
-.card h2{
-color:#087830;
-}
-
-.btn{
-display:block;
-background:#087830;
-color:white;
-padding:14px;
-border-radius:9px;
-text-decoration:none;
-font-weight:bold;
-margin-top:20px;
-}
-
-.btn:hover{
-background:#064d20;
-}
-
-footer{
-margin-top:50px;
-background:#064d20;
-color:white;
-text-align:center;
-padding:25px;
-}
+:root{--g:#08783b;--gl:#eaf6ee;--dark:#183b28;--red:#b42318;--blue:#175cd3;--gold:#b54708}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f2f7f3;color:var(--dark)}
+header{background:linear-gradient(135deg,#075d30,#0b8d48);color:#fff;padding:18px;text-align:center}
+.logo{width:76px;height:76px;border-radius:50%;background:#fff;margin:auto;display:grid;place-items:center;font-size:38px}
+h1{margin:8px 0 3px;font-size:25px}.motto{opacity:.92}.wrap{max-width:1250px;margin:auto;padding:18px}
+.card{background:#fff;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 4px 18px #0001}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:13px}.stat{background:var(--gl);padding:17px;border-radius:13px}
+.stat b{font-size:13px}.stat h2{margin:7px 0;font-size:27px}
+button{border:0;border-radius:9px;padding:11px 15px;background:var(--g);color:#fff;font-weight:bold;cursor:pointer;margin:3px}
+button.blue{background:var(--blue)}button.red{background:var(--red)}button.dark{background:#344054}button.gold{background:var(--gold)}
+input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5cf;border-radius:8px;margin:5px 0 11px;background:#fff}
+textarea{min-height:80px}label{font-weight:bold;font-size:13px}.hidden{display:none}.nav,.tabs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:15px}
+table{width:100%;border-collapse:collapse;min-width:700px}th,td{border-bottom:1px solid #ddd;padding:9px;text-align:left}th{background:#e8f3eb}
+.tablewrap{overflow:auto}.notice{padding:11px;border-radius:9px;background:#fff3cd;margin:9px 0}.ok{background:#e7f7ea}.err{background:#ffe8e6}
+.pill{display:inline-block;background:#e8f3eb;padding:6px 9px;border-radius:20px;margin:3px;font-size:12px}
+.section{border:1px solid #e2e8e3;border-radius:12px;padding:15px;margin:12px 0}.small{font-size:12px;color:#667085}
+.printpage{background:#fff;padding:28px;max-width:900px;margin:auto}.schoolhead{text-align:center;border-bottom:3px solid var(--g);padding-bottom:12px}.reporttitle{text-align:center}
+.signs{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:35px}.barbg{height:12px;background:#e5e7eb;border-radius:8px}.bar{height:12px;background:var(--g);border-radius:8px}
+@media(max-width:650px){h1{font-size:20px}.wrap{padding:9px}.card{padding:14px}}
+@media print{body{background:#fff}.no-print,body>header{display:none!important}.printonly{display:block!important}.printpage{box-shadow:none;max-width:none}}
 </style>
 </head>
-
 <body>
+<header><div class="logo">🌿</div><h1 id="headSchool">SHAMMAH MISSION SCHOOL</h1><div class="motto" id="headMotto">ARISE AND SHINE</div><div id="headContact"></div></header>
+<div class="wrap">
 
-<header>
+<section id="home" class="card">
+<h2>School Portal</h2><p>Choose your access area.</p>
+<div class="grid">
+<button onclick="show('teacherLogin')">👨‍🏫 Teacher Portal</button>
+<button class="blue" onclick="show('adminLogin')">📊 Director / Admin Portal</button>
+</div>
+<div class="notice">This version includes school settings, teachers, classes, students, results, analysis, report cards, printing, activity log and backup tools.</div>
+</section>
 
-<div class="logo">SMS</div>
+<section id="teacherLogin" class="card hidden">
+<h2>Teacher Login</h2><select id="loginTeacher"></select><input id="teacherPass" type="password" placeholder="Password">
+<button onclick="doTeacherLogin()">Login</button><button class="dark" onclick="show('home')">Back</button><div id="teacherLoginMsg"></div>
+</section>
 
-<h1>SHAMMAH MISSION SCHOOL</h1>
+<section id="adminLogin" class="card hidden">
+<h2>Director of Studies / Administrator</h2><input id="adminPass" type="password" placeholder="Password">
+<button class="blue" onclick="doAdminLogin()">Login</button><button class="dark" onclick="show('home')">Back</button><div id="adminLoginMsg"></div>
+</section>
 
-<div class="motto">ARISE AND SHINE</div>
+<section id="teacher" class="card hidden">
+<div class="nav no-print"><button onclick="teacherDashboard()">Home</button><button onclick="teacherMarks()">Enter Results</button><button onclick="teacherProfile()">My Profile</button><button class="red" onclick="logout()">Logout</button></div>
+<div id="teacherArea"></div>
+</section>
 
-<p>RESULTS MANAGEMENT PORTAL</p>
+<section id="admin" class="card hidden">
+<div class="nav no-print"><button onclick="adminDashboard()">Dashboard</button><button onclick="adminStudents()">Students</button><button onclick="adminTeachers()">Teachers</button><button onclick="adminClasses()">Classes</button><button onclick="adminSubjects()">Subjects</button><button onclick="adminResults()">Results</button><button onclick="adminAnalysis()">Analysis</button><button onclick="adminReports()">Report Cards</button><button onclick="printCentre()">Print Centre</button><button onclick="adminSettings()">Settings</button><button onclick="activityLog()">Activity Log</button><button onclick="backupPage()">Backup</button><button class="red" onclick="logout()">Logout</button></div>
+<div id="adminArea"></div>
+</section>
 
-</header>
-
-<div class="container">
-
-<div class="welcome">
-
-<h2>Welcome to Shammah Mission Portal</h2>
-
-<p>
-Manage student results, teacher entries,
-performance analysis and report cards.
-</p>
-
+<section id="printArea" class="hidden printonly"></section>
 </div>
 
-<div class="portals">
+<script>
+const K={settings:"sms_v2_settings",teachers:"sms_v2_teachers",classes:"sms_v2_classes",subjects:"sms_v2_subjects",students:"sms_v2_students",results:"sms_v2_results",logs:"sms_v2_logs"};
+const defaultTeachers=[
+{id:"kim",name:"Mr Kim",phone:"",password:"1234",subjects:["Agriculture","Pre/Tech","Integrated Science"]},
+{id:"keziah",name:"Md Keziah",phone:"",password:"1234",subjects:["Mathematics","CRE","Integrated Science"]},
+{id:"collins",name:"Mr Collin's",phone:"",password:"1234",subjects:["English","Pre/Tech","CRE"]},
+{id:"jonah",name:"Mr Jonah",phone:"",password:"1234",subjects:["Kiswahili","SST"]},
+{id:"kanda",name:"Mr Kanda",phone:"",password:"1234",subjects:["C/A"]}
+];
+let settings=load(K.settings,{school:"SHAMMAH MISSION SCHOOL",motto:"ARISE AND SHINE",upi:"",email:"aicshammahschool2025@gmail.com",phone:"",location:"Marakwet West, Kapsowar",head:"",director:"",opening:"",closing:"",year:"2026"});
+let teachers=load(K.teachers,defaultTeachers), classes=load(K.classes,["Grade 7","Grade 8","Grade 9"]);
+let subjects=load(K.subjects,["Mathematics","English","Kiswahili","Integrated Science","Agriculture","Pre/Tech","CRE","SST","C/A"]);
+let students=load(K.students,[]), results=load(K.results,{}), logs=load(K.logs,[]);
+let currentTeacher=null;
 
-<div class="card">
-
-<div class="icon">👨‍🏫</div>
-
-<h2>Teacher Portal</h2>
-
-<p>
-Enter and manage results for your allocated
-classes and subjects.
-</p>
-
-<a class="btn" href="teacher.html">
-TEACHER LOGIN
-</a>
-
-</div>
-
-<div class="card">
-
-<div class="icon">🔐</div>
-
-<h2>Director Portal</h2>
-
-<p>
-Manage students, teachers, results,
-analysis and report cards.
-</p>
-
-<a class="btn" href="admin.html">
-DIRECTOR LOGIN
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-<footer>
-
-SHAMMAH MISSION SCHOOL<br>
-SHAMMAH MISSION PORTAL<br>
-© 2026
-
-</footer>
-
-</body>
-</html>
+function load(k,d){try{let x=localStorage.getItem(k);return x?JSON.parse(x):JSON.parse(JSON.stringify(d))}catch(e){return d}}
+function save(k,v){localStorage.setItem(k,JSON.stringify(v))}
+function log(action){logs.unshift({time:new Date().toLocaleString(),action});logs=logs.slice(0,500);save(K.logs,logs)}
+function show(id){document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));document.getElementById(id).classList.remove("hidden")}
+function msg(id,t,c=""){document.getElementById(id).innerHTML=`<div class="notice ${c}">${t}</div>`}
+function refreshHeader(){headSchool.textContent=settings.school;headMotto.textContent=settings.motto;headContact.textContent=[settings.upi?"UPI: "+settings.upi:"",settings.email,settings.phone,settings.location].filter(Boolean).join(" • ")}
+function refreshTeacherLogin(){loginTeacher.innerHTML=teachers.map(t=>`<option value="${t.id}">${t.name}</option>`).join("")}
+function init(){
+ refreshHeader();refreshTeacherLogin();
+ if(!students.length){classes.forEach((c,ci)=>{for(let i=1;i<=10;i++)students.push({adm:(ci+7)+"-"+String(i).padStart(3,"0"),name:c+" Student "+i,class:c,gender:"",parent:"",upi:"",status:"Active"})});save(K.students,students)}
+}
+function doTeacherLogin(){let t=teachers.find(x=>x.id===loginTeacher.value);if(!t||teacherPass.value!==t.password){msg("teacherLoginMsg","Incorrect teacher login.","err");return}currentTeacher=t;log("Teacher login: "+t.name);show("teacher");teacherDashboard()}
+function doAdminLogin(){if(adminPass.value!=="1234"){msg("adminLoginMsg","Incorrect Director password.","err");return}log("Director login");show("admin");adminDashboard()}
+function teacherDashboard(){teacherArea.innerHTML=`<h2>Welcome, ${currentTeacher.name}</h2><p>Your allocated learning areas:</p>${currentTeacher.subjects.map(s=>`<span class="pill">${s}</span>`).join("")}<div class="grid" style="margin-top:15px"><div class="stat"><b>Classes</b><h2>${classes.length}</h2></div><div class="stat"><b>Students</b><h2>${students.length}</h2></div><div class="stat"><b>My Subjects</b><h2>${currentTeacher.subjects.length}</h2></div></div><div class="notice ok">You can enter marks only for your allocated subjects.</div>`}
+function teacherMarks(){
+ teacherArea.innerHTML=`<h2>Enter Results</h2><div class="grid"><div><label>Class</label><select id="tmClass">${classes.map(c=>`<option>${c}</option>`).join("")}</select></div><div><label>Subject</label><select id="tmSub">${currentTeacher.subjects.map(s=>`<option>${s}</option>`).join("")}</select></div><div><label>Term</label><select id="tmTerm"><option>Term 1</option><option>Term 2</option><option>Term 3</option></select></div><div><label>Year</label><input id="tmYear" value="${settings.year}"></div></div><button onclick="loadMarkTable()">Load Students</button><div id="markTable"></div>`
+}
+function rkey(adm,sub,term,year){return `${adm}|${sub}|${term}|${year}`}
+function eid(k){return "m"+btoa(k).replace(/[^A-Za-z0-9]/g,"")}
+function loadMarkTable(){
+ let c=tmClass.value,s=tmSub.value,t=tmTerm.value,y=tmYear.value,list=students.filter(x=>x.class===c);
+ let h=`<h3>${c} — ${s} — ${t} — ${y}</h3><div class="tablewrap"><table><tr><th>Admission</th><th>Student</th><th>Marks</th></tr>`;
+ list.forEach(st=>{let k=rkey(st.adm,s,t,y);h+=`<tr><td>${st.adm}</td><td>${st.name}</td><td><input id="${eid(k)}" type="number" min="0" max="100" value="${results[k]?.marks??""}"></td></tr>`});
+ markTable.innerHTML=h+"</table></div><button onclick='saveTeacherMarks()'>Save Results</button><button class='blue' onclick='publishTeacherMarks()'>Publish Results</button><div id='markMsg'></div>"
+}
+function saveTeacherMarks(publish=false){
+ let c=tmClass.value,s=tmSub.value,t=tmTerm.value,y=tmYear.value;
+ students.filter(x=>x.class===c).forEach(st=>{let k=rkey(st.adm,s,t,y),el=document.getElementById(eid(k));if(el&&el.value!==""){let v=Math.max(0,Math.min(100,Number(el.value)));results[k]={marks:v,teacher:currentTeacher.name,published:publish,updated:new Date().toISOString()}}});
+ save(K.results,results);log((publish?"Published":"Saved")+" "+s+" results for "+c);markMsg.innerHTML=`<div class="notice ok">${publish?"Results published":"Results saved"} successfully.</div>`
+}
+function publishTeacherMarks(){saveTeacherMarks(true)}
+function teacherProfile(){teacherArea.innerHTML=`<h2>My Profile</h2><label>Name</label><input id="tpn" value="${currentTeacher.name}"><label>Phone</label><input id="tpp" value="${currentTeacher.phone}"><label>New Password</label><input id="tppw" type="password" placeholder="Leave blank to keep current"><button onclick="saveTeacherProfile()">Save Profile</button><div class="notice">Allocated subjects are controlled by the Director.</div>`}
+function saveTeacherProfile(){currentTeacher.name=tpn.value;currentTeacher.phone=tpp.value;if(tppw.value)currentTeacher.password=tppw.value;let i=teachers.findIndex(x=>x.id===currentTeacher.id);teachers[i]=currentTeacher;save(K.teachers,teachers);refreshTeacherLogin();log("Teacher profile updated: "+currentTeacher.name);teacherDashboard()}
+function adminDashboard(){adminArea.innerHTML=`<h2>Director Dashboard</h2><div class="grid"><div class="stat"><b>Students</b><h2>${students.length}</h2></div><div class="stat"><b>Teachers</b><h2>${teachers.length}</h2></div><div class="stat"><b>Classes</b><h2>${classes.length}</h2></div><div class="stat"><b>Subjects</b><h2>${subjects.length}</h2></div><div class="stat"><b>Saved Results</b><h2>${Object.keys(results).length}</h2></div><div class="stat"><b>Published</b><h2>${Object.values(results).filter(x=>x.published).length}</h2></div></div><div class="section"><h3>Quick Administration</h3><button onclick="adminStudents()">Manage Students</button><button onclick="adminTeachers()">Manage Teachers</button><button onclick="adminClasses()">Manage Classes</button><button onclick="adminSettings()">School Settings</button><button class="gold" onclick="adminReports()">Print Report Cards</button></div>`}
+function adminStudents(){
+ let h=`<h2>Student Management</h2><button onclick="addStudent()">+ Add Student</button><button class="dark" onclick="printStudentList()">Print Student List</button><div class="tablewrap"><table><tr><th>Admission</th><th>Name</th><th>Class</th><th>Gender</th><th>Student UPI</th><th>Parent/Guardian</th><th>Parent Phone</th><th>Status</th><th>Action</th></tr>`;
+ students.forEach((s,i)=>h+=`<tr><td><input value="${s.adm}" onchange="editStudent(${i},'adm',this.value)"></td><td><input value="${s.name}" onchange="editStudent(${i},'name',this.value)"></td><td><select onchange="editStudent(${i},'class',this.value)">${classes.map(c=>`<option ${s.class===c?"selected":""}>${c}</option>`).join("")}</select></td><td><input value="${s.gender}" onchange="editStudent(${i},'gender',this.value)"></td><td><input value="${s.upi}" onchange="editStudent(${i},'upi',this.value)"></td><td><input value="${s.parent}" onchange="editStudent(${i},'parent',this.value)"></td><td><input value="${s.phone||""}" onchange="editStudent(${i},'phone',this.value)"></td><td><select onchange="editStudent(${i},'status',this.value)"><option ${s.status==="Active"?"selected":""}>Active</option><option ${s.status==="Transferred"?"selected":""}>Transferred</option><option ${s.status==="Graduated"?"selected":""}>Graduated</option></select></td><td><button class="red" onclick="deleteStudent(${i})">Remove</button></td></tr>`);
+ adminArea.innerHTML=h+"</table></div>"
+}
+function editStudent(i,k,v){students[i][k]=v;save(K.students,students);log("Edited student "+students[i].adm)}
+function addStudent(){let c=prompt("Class:",classes[0]);if(!c)return;let n=prompt("Student name:");if(!n)return;let a=prompt("Admission number:");if(!a)return;students.push({adm:a,name:n,class:c,gender:"",upi:"",parent:"",phone:"",status:"Active"});save(K.students,students);log("Added student "+a);adminStudents()}
+function deleteStudent(i){if(confirm("Remove this individual student?")){log("Removed student "+students[i].adm);students.splice(i,1);save(K.students,students);adminStudents()}}
+function adminTeachers(){
+ let h=`<h2>Teacher Management & Allocation</h2><button onclick="addTeacher()">+ Add Teacher</button><div class="tablewrap"><table><tr><th>Name</th><th>Phone</th><th>Password</th><th>Allocated Subjects</th><th>Action</th></tr>`;
+ teachers.forEach((t,i)=>h+=`<tr><td><input value="${t.name}" onchange="teachers[${i}].name=this.value;save(K.teachers,teachers);refreshTeacherLogin()"></td><td><input value="${t.phone}" onchange="teachers[${i}].phone=this.value;save(K.teachers,teachers)"></td><td><input value="${t.password}" onchange="teachers[${i}].password=this.value;save(K.teachers,teachers)"></td><td><input value="${t.subjects.join(", ")}" onchange="teachers[${i}].subjects=this.value.split(",").map(x=>x.trim()).filter(Boolean);save(K.teachers,teachers)"></td><td><button class="red" onclick="deleteTeacher(${i})">Remove</button></td></tr>`);
+ adminArea.innerHTML=h+"</table></div>"
+}
+function addTeacher(){let n=prompt("Teacher name:");if(!n)return;teachers.push({id:"t"+Date.now(),name:n,phone:"",password:"1234",subjects:[]});save(K.teachers,teachers);refreshTeacherLogin();log("Added teacher "+n);adminTeachers()}
+function deleteTeacher(i){if(confirm("Remove teacher?")){log("Removed teacher "+teachers[i].name);teachers.splice(i,1);save(K.teachers,teachers);refreshTeacherLogin();adminTeachers()}}
+function adminClasses(){
+ let h=`<h2>Class / Grade Management</h2><button onclick="addClass()">+ Add Class / Grade</button><div class="tablewrap"><table><tr><th>Class</th><th>Action</th></tr>`;
+ classes.forEach((c,i)=>h+=`<tr><td><input value="${c}" onchange="classes[${i}]=this.value;save(K.classes,classes)"></td><td><button class="red" onclick="deleteClass(${i})">Remove</button></td></tr>`);
+ adminArea.innerHTML=h+"</table></div>"
+}
+function addClass(){let c=prompt("Class/Grade name:");if(c&&!classes.includes(c)){classes.push(c);save(K.classes,classes);log("Added class "+c);adminClasses()}}
+function deleteClass(i){if(confirm("Remove this class? Existing students are not deleted.")){log("Removed class "+classes[i]);classes.splice(i,1);save(K.classes,classes);adminClasses()}}
+function adminSubjects(){adminArea.innerHTML=`<h2>Subject / Learning Area Management</h2><button onclick="addSubject()">+ Add Subject</button><div class="grid">${subjects.map((s,i)=>`<div class="section"><input value="${s}" onchange="subjects[${i}]=this.value;save(K.subjects,subjects)"><button class="red" onclick="deleteSubject(${i})">Remove</button></div>`).join("")}</div><div class="notice">Subject allocations are assigned from the Teachers section.</div>`}
+function addSubject(){let s=prompt("Subject/Learning area:");if(s&&!subjects.includes(s)){subjects.push(s);save(K.subjects,subjects);log("Added subject "+s);adminSubjects()}}
+function deleteSubject(i){if(confirm("Remove subject from the subject list?")){subjects.splice(i,1);save(K.subjects,subjects);adminSubjects()}}
+function adminResults(){
+ let h=`<h2>All Results</h2><div class="tablewrap"><table><tr><th>Admission</th><th>Subject</th><th>Term</th><th>Year</th><th>Marks</th><th>Status</th><th>Teacher</th></tr>`;
+ Object.entries(results).forEach(([k,v])=>{let q=k.split("|");h+=`<tr><td>${q[0]}</td><td>${q[1]}</td><td>${q[2]}</td><td>${q[3]}</td><td><input type="number" value="${v.marks}" onchange="results['${k}'].marks=Number(this.value);save(K.results,results)"></td><td>${v.published?"Published":"Saved"}</td><td>${v.teacher||""}</td></tr>`});
+ adminArea.innerHTML=h+"</table></div>"
+}
+function grade(v){return v>=82?"EE":v>=45?"ME":v>=25?"AE":"BE"}
+function adminAnalysis(){
+ let rows=students.map(s=>{let vals=Object.entries(results).filter(([k,v])=>k.startsWith(s.adm+"|")&&v.published).map(x=>x[1].marks);let total=vals.reduce((a,b)=>a+b,0),mean=vals.length?total/vals.length:0;return{s,n:vals.length,total,mean,g:grade(mean)}})
+ let ee=rows.filter(x=>x.g==="EE").length,me=rows.filter(x=>x.g==="ME").length,ae=rows.filter(x=>x.g==="AE").length,be=rows.filter(x=>x.g==="BE").length;
+ adminArea.innerHTML=`<h2>School Performance Analysis</h2><p><b>Grading:</b> EE 82–100 • ME 45–81 • AE 25–44 • BE 0–24.</p><div class="grid"><div class="stat">EE<h2>${ee}</h2></div><div class="stat">ME<h2>${me}</h2></div><div class="stat">AE<h2>${ae}</h2></div><div class="stat">BE<h2>${be}</h2></div></div><div class="tablewrap"><table><tr><th>Admission</th><th>Name</th><th>Subjects</th><th>Total</th><th>Mean</th><th>Grade</th></tr>${rows.map(r=>`<tr><td>${r.s.adm}</td><td>${r.s.name}</td><td>${r.n}</td><td>${r.total}</td><td>${r.mean.toFixed(1)}</td><td>${r.g}</td></tr>`).join("")}</table></div>`
+}
+function adminReports(){
+ adminArea.innerHTML=`<h2>Report Card Centre</h2><div class="grid"><div><label>Class</label><select id="rpClass">${classes.map(c=>`<option>${c}</option>`).join("")}</select></div><div><label>Term</label><select id="rpTerm"><option>Term 1</option><option>Term 2</option><option>Term 3</option></select></div><div><label>Year</label><input id="rpYear" value="${settings.year}"></div></div><button class="gold" onclick="printReports(false)">Print Selected Class</button><button class="blue" onclick="printReports(true)">Print ALL Students</button><button onclick="printPublishedOnly()">Print Published Reports</button><div class="notice">Reports are printed one student per page, in admission-number order.</div>`
+}
+function reportHTML(s,term,year){
+ let rows=subjects.map(sub=>{let v=results[rkey(s.adm,sub,term,year)]?.marks;return `<tr><td>${sub}</td><td>${v??"—"}</td><td>${v==null?"—":grade(v)}</td><td>${v==null?"":v>=80?"Excellent":v>=50?"Good progress":"Needs support"}</td></tr>`}).join("");
+ let vals=subjects.map(x=>results[rkey(s.adm,x,term,year)]?.marks).filter(v=>v!==undefined),mean=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
+ return `<div class="printpage" style="page-break-after:always"><div class="schoolhead"><div style="font-size:42px">🌿</div><h1>${settings.school}</h1><b>${settings.motto}</b><p>${settings.location||""} ${settings.phone?" • "+settings.phone:""} ${settings.email?" • "+settings.email:""}</p><p><b>School UPI:</b> ${settings.upi||"________________"}</p></div><h2 class="reporttitle">STUDENT REPORT CARD</h2><p><b>Student:</b> ${s.name} &nbsp; <b>Admission:</b> ${s.adm}</p><p><b>Class:</b> ${s.class} &nbsp; <b>Term:</b> ${term} &nbsp; <b>Year:</b> ${year}</p><table><tr><th>Learning Area</th><th>Marks</th><th>Grade</th><th>Teacher Comment</th></tr>${rows}</table><p><b>General Mean:</b> ${mean.toFixed(1)} &nbsp; <b>Overall Grade:</b> ${vals.length?grade(mean):"—"}</p><p><b>Class Teacher's Remark:</b> _________________________________________________</p><p><b>Director/Head Teacher's Remark:</b> ____________________________________________</p><div class="signs"><div>Class Teacher: __________________<br><br>Date: __________</div><div>Director/Head Teacher: ___________<br><br>Date: __________</div></div></div>`
+}
+function printReports(all){let list=all?students:students.filter(s=>s.class===rpClass.value);list.sort((a,b)=>a.adm.localeCompare(b.adm,undefined,{numeric:true}));printNow(list.map(s=>reportHTML(s,rpTerm.value,rpYear.value)).join(""))}
+function printPublishedOnly(){let list=students.filter(s=>Object.entries(results).some(([k,v])=>k.startsWith(s.adm+"|")&&v.published));printNow(list.sort((a,b)=>a.adm.localeCompare(b.adm,undefined,{numeric:true})).map(s=>reportHTML(s,"Published Term",settings.year)).join(""))}
+function printNow(content){printArea.innerHTML=content;printArea.classList.remove("hidden");window.print();setTimeout(()=>printArea.classList.add("hidden"),1200)}
+function printCentre(){adminArea.innerHTML=`<h2>Print Centre</h2><button onclick="printStudentList()">Student Lists</button><button onclick="printTeacherList()">Teacher List</button><button onclick="printClassLists()">Class Lists</button><button onclick="adminReports()">Report Cards</button><button onclick="printResultsTable()">Results Register</button><button onclick="adminAnalysis()">Analysis</button>`}
+function printStudentList(){let h=`<div class="printpage"><div class="schoolhead"><h1>${settings.school}</h1><h2>STUDENT REGISTER</h2></div>`;classes.forEach(c=>{h+=`<h2>${c}</h2><table><tr><th>#</th><th>Admission</th><th>Name</th><th>Gender</th><th>UPI</th><th>Parent/Guardian</th><th>Phone</th></tr>`;students.filter(s=>s.class===c).forEach((s,i)=>h+=`<tr><td>${i+1}</td><td>${s.adm}</td><td>${s.name}</td><td>${s.gender}</td><td>${s.upi}</td><td>${s.parent}</td><td>${s.phone||""}</td></tr>`);h+="</table>"}h+="</div>";printNow(h)}
+function printTeacherList(){printNow(`<div class="printpage"><div class="schoolhead"><h1>${settings.school}</h1><h2>TEACHER REGISTER</h2></div><table><tr><th>#</th><th>Teacher</th><th>Phone</th><th>Allocated Subjects</th></tr>${teachers.map((t,i)=>`<tr><td>${i+1}</td><td>${t.name}</td><td>${t.phone}</td><td>${t.subjects.join(", ")}</td></tr>`).join("")}</table></div>`)}
+function printClassLists(){let h=`<div class="printpage"><div class="schoolhead"><h1>${settings.school}</h1><h2>CLASS LISTS</h2></div>`;classes.forEach(c=>{h+=`<h2>${c}</h2><table><tr><th>#</th><th>Admission</th><th>Name</th></tr>`;students.filter(s=>s.class===c).sort((a,b)=>a.adm.localeCompare(b.adm,undefined,{numeric:true})).forEach((s,i)=>h+=`<tr><td>${i+1}</td><td>${s.adm}</td><td>${s.name}</td></tr>`);h+="</table>"}h+="</div>";printNow(h)}
+function printResultsTable(){let h=`<div class="printpage"><div class="schoolhead"><h1>${settings.school}</h1><h2>RESULTS REGISTER</h2></div><table><tr><th>Admission</th><th>Subject</th><th>Term</th><th>Year</th><th>Marks</th><th>Status</th></tr>`;Object.entries(results).forEach(([k,v])=>{let q=k.split("|");h+=`<tr><td>${q[0]}</td><td>${q[1]}</td><td>${q[2]}</td><td>${q[3]}</td><td>${v.marks}</td><td>${v.published?"Published":"Saved"}</td></tr>`});printNow(h+"</table></div>")}
+function adminSettings(){
+ adminArea.innerHTML=`<h2>⚙️ Complete School Settings</h2>
+ <div class="section"><h3>School Information</h3><div class="grid">
+ <div><label>School Name</label><input id="setSchool" value="${settings.school}"></div><div><label>Motto</label><input id="setMotto" value="${settings.motto}"></div>
+ <div><label>School UPI</label><input id="setUPI" value="${settings.upi}" placeholder="Enter school UPI"></div><div><label>School Phone</label><input id="setPhone" value="${settings.phone}"></div>
+ <div><label>School Email</label><input id="setEmail" value="${settings.email}"></div><div><label>Location / Address</label><input id="setLocation" value="${settings.location}"></div>
+ <div><label>Head Teacher</label><input id="setHead" value="${settings.head}"></div><div><label>Director of Studies</label><input id="setDirector" value="${settings.director}"></div>
+ <div><label>Academic Year</label><input id="setYear" value="${settings.year}"></div><div><label>Opening Date</label><input id="setOpening" value="${settings.opening}"></div><div><label>Closing Date</label><input id="setClosing" value="${settings.closing}"></div>
+ </div></div>
+ <div class="section"><h3>Grading System</h3><p>Current bands: <b>EE</b> 82–100 • <b>ME</b> 45–81 • <b>AE</b> 25–44 • <b>BE</b> 0–24.</p><p class="small">The grading thresholds can be made fully editable in the online-database version.</p></div>
+ <div class="section"><h3>Report Card Controls</h3><p>School name, motto, UPI, contact details, student details, subjects, marks, grades, mean, remarks, dates and signatures are included in the printable design.</p></div>
+ <button onclick="saveSettings()">Save All School Settings</button><button class="dark" onclick="adminDashboard()">Cancel</button><div id="settingsMsg"></div>`
+}
+function saveSettings(){settings={...settings,school:setSchool.value,motto:setMotto.value,upi:setUPI.value,phone:setPhone.value,email:setEmail.value,location:setLocation.value,head:setHead.value,director:setDirector.value,year:setYear.value,opening:setOpening.value,closing:setClosing.value};save(K.settings,settings);refreshHeader();log("School settings updated");settingsMsg.innerHTML="<div class='notice ok'>All school settings saved.</div>"}
+function activityLog(){adminArea.innerHTML=`<h2>Activity Log</h2><button class="red" onclick="clearLogs()">Clear Log</button><div class="tablewrap"><table><tr><th>Date/Time</th><th>Activity</th></tr>${logs.map(l=>`<tr><td>${l.time}</td><td>${l.action}</td></tr>`).join("")}</table></div>`}
+function clearLogs(){if(confirm("Clear activity log?")){logs=[];save(K.logs,logs);activityLog()}}
+function backupPage(){adminArea.innerHTML=`<h2>Backup & Restore</h2><p>Download the school's current browser data as a backup file.</p><button class="blue" onclick="downloadBackup()">⬇ Download Backup</button><input type="file" id="restoreFile" accept=".json"><button onclick="restoreBackup()">Restore Backup</button><div class="notice">Keep backup files in a safe place. A real shared online database should also provide automatic server backups.</div>`}
+function downloadBackup(){let data={settings,teachers,classes,subjects,students,results,logs};let a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="shammah_school_backup.json";a.click()}
+function restoreBackup(){let f=restoreFile.files[0];if(!f)return alert("Choose a backup file first.");let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);Object.assign(window,{settings:d.settings,teachers:d.teachers,classes:d.classes,subjects:d.subjects,students:d.students,results:d.results,logs:d.logs});save(K.settings,settings);save(K.teachers,teachers);save(K.classes,classes);save(K.subjects,subjects);save(K.students,students);save(K.results,results);save(K.logs,logs);refreshHeader();refreshTeacherLogin();alert("Backup restored.");adminDashboard()}catch(e){alert("Invalid backup file.")}};r.readAsText(f)}
+function logout(){currentTeacher=null;show("home")}
+init();
+</script>
+</body></html>
