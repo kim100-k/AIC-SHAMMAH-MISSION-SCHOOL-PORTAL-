@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Teacher Portal | SHAMMAH MISSION SCHOOL</title>
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f3f7f4;
+color:#183b2b;
+}
+
+.app{
+display:flex;
+min-height:100vh;
+}
+
+.sidebar{
+width:240px;
+background:#075b3b;
+color:white;
+padding:20px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.logo{
+text-align:center;
+padding-bottom:25px;
+}
+
+.logo-circle{
+width:70px;
+height:70px;
+border-radius:50%;
+background:white;
+color:#075b3b;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+font-weight:bold;
+font-size:21px;
+}
+
+.logo h2{
+font-size:15px;
+margin-top:10px;
+}
+
+.menu{
+border:0;
+background:rgba(255,255,255,.1);
+color:white;
+padding:13px;
+border-radius:9px;
+text-align:left;
+cursor:pointer;
+font-weight:bold;
+}
+
+.menu:hover,
+.menu.active{
+background:white;
+color:#075b3b;
+}
+
+.logout{
+margin-top:auto;
+background:#a72828;
+}
+
+.content{
+flex:1;
+padding:25px;
+}
+
+.header{
+background:white;
+padding:20px;
+border-radius:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.header h1{
+font-size:23px;
+}
+
+.header p{
+color:#68766e;
+margin-top:5px;
+}
+
+.badge{
+background:#dff1e7;
+color:#075b3b;
+padding:9px 14px;
+border-radius:20px;
+font-weight:bold;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+gap:16px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 4px 15px rgba(0,0,0,.06);
+}
+
+.number{
+font-size:30px;
+font-weight:bold;
+color:#075b3b;
+margin-top:8px;
+}
+
+.section{
+margin-top:20px;
+}
+
+.notice{
+background:#fff8d9;
+border-left:5px solid #d39b00;
+padding:15px;
+border-radius:7px;
+margin-top:15px;
+}
+
+.form-card{
+max-width:750px;
+}
+
+label{
+display:block;
+margin:14px 0 6px;
+font-weight:bold;
+}
+
+select,
+input{
+width:100%;
+padding:12px;
+border:1px solid #ccd8d1;
+border-radius:8px;
+}
+
+.primary{
+margin-top:18px;
+padding:12px 18px;
+background:#075b3b;
+color:white;
+border:0;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.table-container{
+overflow:auto;
+background:white;
+border-radius:15px;
+margin-top:18px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:700px;
+}
+
+th,
+td{
+padding:12px;
+border-bottom:1px solid #e3ebe6;
+text-align:left;
+}
+
+th{
+background:#075b3b;
+color:white;
+}
+
+.mark{
+width:90px;
+padding:9px;
+}
+
+.status{
+font-weight:bold;
+}
+
+@media(max-width:750px){
+
+.app{
+display:block;
+}
+
+.sidebar{
+width:100%;
+display:grid;
+grid-template-columns:1fr 1fr;
+}
+
+.logo{
+grid-column:1/-1;
+}
+
+.logout{
+margin-top:0;
+}
+
+.content{
+padding:15px;
+}
+
+.header{
+align-items:flex-start;
+gap:10px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<aside class="sidebar">
+
+<div class="logo">
+
+<div class="logo-circle">
+SMS
+</div>
+
+<h2>SHAMMAH MISSION SCHOOL</h2>
+
+</div>
+
+<button
+class="menu active"
+onclick="showPage('home',this)">
+🏠 Overview
+</button>
+
+<button
+class="menu"
+onclick="showPage('marks',this)">
+📝 Enter Marks
+</button>
+
+<button
+class="menu"
+onclick="showPage('saved',this)">
+💾 Saved Results
+</button>
+
+<button
+class="menu"
+onclick="showPage('published',this)">
+📢 Published Results
+</button>
+
+<button
+class="menu"
+onclick="showPage('profile',this)">
+👤 My Profile
+</button>
+
+<button
+class="menu logout"
+onclick="logout()">
+🚪 Logout
+</button>
+
+</aside>
+
+
+<main class="content">
+
+<header class="header">
+
+<div>
+
+<h1 id="pageTitle">
+Teacher Dashboard
+</h1>
+
+<p>
+SHAMMAH MISSION SCHOOL RESULTS SYSTEM
+</p>
+
+</div>
+
+<div class="badge">
+TEACHER
+</div>
+
+</header>
+
+
+<div id="pageContent"></div>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+DATABASE
+===================================================== */
+
+const DATABASE_KEY =
+"SHAMMAH_MISSION_SCHOOL_DATABASE";
+
+
+function getDatabase(){
+
+const data =
+localStorage.getItem(DATABASE_KEY);
+
+if(data){
+
+return JSON.parse(data);
+
+}
+
+return {
+
+students:[],
+
+teachers:[],
+
+results:[],
+
+settings:{
+schoolName:"SHAMMAH MISSION SCHOOL",
+year:"2026",
+term:"Term 1"
+}
+
+};
+
+}
+
+
+function saveDatabase(data){
+
+localStorage.setItem(
+DATABASE_KEY,
+JSON.stringify(data)
+);
+
+}
+
+
+/* =====================================================
+LOGIN CHECK
+===================================================== */
+
+const currentUser =
+JSON.parse(
+sessionStorage.getItem(
+"shammahCurrentUser"
+) || "null"
+);
+
+
+if(
+!currentUser ||
+currentUser.role !== "teacher"
+){
+
+window.location.href =
+"index.html";
+
+}
+
+
+/* =====================================================
+NAVIGATION
+===================================================== */
+
+function showPage(page,button){
+
+document
+.querySelectorAll(".menu")
+.forEach(btn=>{
+btn.classList.remove("active");
+});
+
+
+if(button){
+
+button.classList.add("active");
+
+}
+
+
+const titles={
+
+home:"Teacher Dashboard",
+
+marks:"Enter Marks",
+
+saved:"Saved Results",
+
+published:"Published Results",
+
+profile:"My Profile"
+
+};
+
+
+document.getElementById(
+"pageTitle"
+).textContent=titles[page];
+
+
+if(page==="home")
+home();
+
+if(page==="marks")
+marks();
+
+if(page==="saved")
+saved();
+
+if(page==="published")
+published();
+
+if(page==="profile")
+profile();
+
+}
+
+
+/* =====================================================
+HOME
+===================================================== */
+
+function home(){
+
+const db=getDatabase();
+
+
+let teacher=null;
+
+
+if(db.teachers){
+
+teacher=db.teachers.find(
+t=>t.name===currentUser.name
+);
+
+}
+
+
+document.getElementById(
+"pageContent"
+).innerHTML=`
+
+<div class="cards">
+
+<div class="card">
+
+<h3>Teacher</h3>
+
+<div class="number">
+${currentUser.name || "Teacher"}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Academic Year</h3>
+
+<div class="number">
+${db.settings.year}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Current Term</h3>
+
+<div class="number">
+${db.settings.term}
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h3>Saved Results</h3>
+
+<div class="number">
+${db.results.length}
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card section">
+
+<h2>
+My Allocations
+</h2>
+
+<div class="notice">
+
+${
+teacher
+?
+(
+Array.isArray(teacher.allocations)
+?
+teacher.allocations.join("<br>")
+:
+teacher.allocations
+)
+:
+"Teacher allocation will be assigned by the Director."
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+MARKS ENTRY
+===================================================== */
+
+function marks(){
+
+const db=getDatabase();
+
+
+const teacher=db.teachers
+?
+db.teachers.find(
+t=>t.name===currentUser.name
+)
+:
+null;
+
+
+let allocations=[];
+
+
+if(teacher){
+
+allocations=
+Array.isArray(teacher.allocations)
+?
+teacher.allocations
+:
+[];
+
+}
+
+
+document.getElementById(
+"pageContent"
+).innerHTML=`
+
+<div class="card form-card">
+
+<h2>Enter Student Marks</h2>
+
+
+<label>
+Class / Grade
+</label>
+
+<select id="grade">
+
+<option value="">
+Select Grade
+</option>
+
+<option value="Grade 7">
+Grade 7
+</option>
+
+<option value="Grade 8">
+Grade 8
+</option>
+
+<option value="Grade 9">
+Grade 9
+</option>
+
+</select>
+
+
+<label>
+Subject
+</label>
+
+<select id="subject">
+
+<option value="">
+Select Allocated Subject
+</option>
+
+${
+allocations.map(a=>
+`<option>${a}</option>`
+).join("")
+}
+
+</select>
+
+
+<button
+class="primary"
+onclick="loadStudents()">
+
+Load Students
+
+</button>
+
+</div>
+
+
+<div id="marksTable"></div>
+
+`;
+
+}
+
+
+/* =====================================================
+LOAD STUDENTS
+===================================================== */
+
+function loadStudents(){
+
+const grade=
+document.getElementById("grade").value;
+
+const subject=
+document.getElementById("subject").value;
+
+
+if(!grade || !subject){
+
+alert(
+"Select both Grade and Subject."
+);
+
+return;
+
+}
+
+
+const db=getDatabase();
+
+
+const students=
+db.students.filter(
+s=>s.grade===grade
+);
+
+
+if(students.length===0){
+
+document.getElementById(
+"marksTable"
+).innerHTML=`
+
+<div class="card section">
+
+<div class="notice">
+
+No students have been registered
+in ${grade} yet.
+
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+document.getElementById(
+"marksTable"
+).innerHTML=`
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Admission</th>
+<th>Student Name</th>
+<th>Marks</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+students.map((student,index)=>`
+
+<tr>
+
+<td>
+${student.admission}
+</td>
+
+<td>
+${student.name}
+</td>
+
+<td>
+
+<input
+class="mark"
+type="number"
+min="0"
+max="100"
+id="mark_${index}"
+placeholder="0-100"
+>
+
+</td>
+
+</tr>
+
+`).join("")
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+
+<button
+class="primary"
+onclick='saveMarks(${JSON.stringify(students)},${JSON.stringify(subject)})'>
+
+SAVE RESULTS
+
+</button>
+
+`;
+
+}
+
+
+/* =====================================================
+SAVE MARKS
+===================================================== */
+
+function saveMarks(students,subject){
+
+const grade=
+document.getElementById("grade").value;
+
+
+if(!grade || !subject){
+
+alert(
+"Select Grade and Subject first."
+);
+
+return;
+
+}
+
+
+const db=getDatabase();
+
+
+let saved=0;
+
+
+students.forEach((student,index)=>{
+
+const input=
+document.getElementById(
+"mark_"+index
+);
+
+
+if(!input.value){
+
+return;
+
+}
+
+
+const mark=
+Number(input.value);
+
+
+if(mark<0 || mark>100){
+
+alert(
+"Marks must be between 0 and 100."
+);
+
+return;
+
+}
+
+
+let gradeLevel;
+
+
+if(mark>=90){
+
+gradeLevel="EE";
+
+}
+else if(mark>=50){
+
+gradeLevel="ME";
+
+}
+else if(mark>=30){
+
+gradeLevel="AE";
+
+}
+else{
+
+gradeLevel="BE";
+
+}
+
+
+db.results.push({
+
+id:Date.now()+"_"+index,
+
+admission:student.admission,
+
+studentName:student.name,
+
+class:grade,
+
+subject:subject,
+
+marks:mark,
+
+grade:gradeLevel,
+
+teacher:currentUser.name,
+
+year:db.settings.year,
+
+term:db.settings.term,
+
+saved:true,
+
+published:false,
+
+teacherComment:""
+
+});
+
+
+saved++;
+
+});
+
+
+saveDatabase(db);
+
+
+alert(
+saved+
+" result(s) saved successfully."
+);
+
+
+savedResults();
+
+}
+
+
+/* =====================================================
+SAVED RESULTS
+===================================================== */
+
+function saved(){
+
+const db=getDatabase();
+
+
+const results=
+db.results.filter(
+r=>
+r.teacher===currentUser.name &&
+r.saved===true &&
+r.published===false
+);
+
+
+document.getElementById(
+"pageContent"
+).innerHTML=`
+
+<div class="card">
+
+<h2>
+Saved Results
+</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Student</th>
+<th>Class</th>
+<th>Subject</th>
+<th>Marks</th>
+<th>Grade</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+results.length
+
+?
+
+results.map(r=>`
+
+<tr>
+
+<td>${r.studentName}</td>
+
+<td>${r.class}</td>
+
+<td>${r.subject}</td>
+
+<td>${r.marks}</td>
+
+<td>${r.grade}</td>
+
+<td class="status">
+Saved
+</td>
+
+</tr>
+
+`).join("")
+
+:
+
+`<tr>
+<td colspan="6">
+No saved results.
+</td>
+</tr>`
+
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+${
+results.length
+?
+`
+<button
+class="primary"
+onclick="publishResults()">
+
+PUBLISH SAVED RESULTS
+
+</button>
+`
+:
+""
+}
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+PUBLISH
+===================================================== */
+
+function publishResults(){
+
+if(
+!confirm(
+"Publish all your saved results?"
+)
+){
+
+return;
+
+}
+
+
+const db=getDatabase();
+
+
+let count=0;
+
+
+db.results.forEach(result=>{
+
+if(
+result.teacher===currentUser.name &&
+result.saved===true &&
+result.published===false
+){
+
+result.published=true;
+
+count++;
+
+}
+
+});
+
+
+saveDatabase(db);
+
+
+alert(
+count+
+" result(s) published successfully."
+);
+
+
+published();
+
+}
+
+
+/* =====================================================
+PUBLISHED
+===================================================== */
+
+function published(){
+
+const db=getDatabase();
+
+
+const results=
+db.results.filter(
+r=>
+r.teacher===currentUser.name &&
+r.published===true
+);
+
+
+document.getElementById(
+"pageContent"
+).innerHTML=`
+
+<div class="card">
+
+<h2>
+Published Results
+</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Student</th>
+<th>Class</th>
+<th>Subject</th>
+<th>Marks</th>
+<th>Grade</th>
+<th>Term</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+results.length
+
+?
+
+results.map(r=>`
+
+<tr>
+
+<td>${r.studentName}</td>
+
+<td>${r.class}</td>
+
+<td>${r.subject}</td>
+
+<td>${r.marks}</td>
+
+<td>${r.grade}</td>
+
+<td>${r.term}</td>
+
+</tr>
+
+`).join("")
+
+:
+
+`<tr>
+<td colspan="6">
+No published results.
+</td>
+</tr>`
+
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+PROFILE
+===================================================== */
+
+function profile(){
+
+const db=getDatabase();
+
+
+const teacher=db.teachers
+?
+db.teachers.find(
+t=>t.name===currentUser.name
+)
+:
+null;
+
+
+document.getElementById(
+"pageContent"
+).innerHTML=`
+
+<div class="card">
+
+<h2>
+My Profile
+</h2>
+
+<p>
+<strong>Name:</strong>
+${currentUser.name}
+</p>
+
+<p>
+<strong>Username:</strong>
+${currentUser.username}
+</p>
+
+<p>
+<strong>Role:</strong>
+Teacher
+</p>
+
+<br>
+
+<h3>
+Allocated Subjects / Classes
+</h3>
+
+<div class="notice">
+
+${
+teacher
+?
+(
+Array.isArray(teacher.allocations)
+?
+teacher.allocations.join("<br>")
+:
+teacher.allocations
+)
+:
+"No allocations assigned."
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+LOGOUT
+===================================================== */
+
+function logout(){
+
+sessionStorage.removeItem(
+"shammahCurrentUser"
+);
+
+sessionStorage.removeItem(
+"shammahLoggedIn"
+);
+
+window.location.href=
+"index.html";
+
+}
+
+
+/* =====================================================
+START
+===================================================== */
+
+showPage("home");
+
+</script>
+
+</body>
+  </html>
